@@ -15,15 +15,12 @@ export default function Todolist() {
   const [TitleList, setTitleList] = useState("");
   const [reload, setReload] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
-  console.log(taskList);
 
   // je rend visible le token pour mes requetes
   const userToken = localStorage.getItem('User token')
 
   // charger les datas
   useEffect(() => {
-    // const userToken = localStorage.getItem('User token')
-
     axios.get(`${process.env.REACT_APP_BACK_API_BASE_URL}/todolists/${id}?populate=*`,
       {
         headers: {
@@ -32,15 +29,11 @@ export default function Todolist() {
         },
       })
       .then(function (response) {
-        // en cas de réussite de la requête
-        // console.log(response);
         setTitleList(response.data.data.attributes.title);
         setTaskList(response.data.data.attributes.tasksList.data);
       })
       .catch(function (error) {
-        // en cas d’échec de la requête
         console.log(error);
-
       })
       .finally(function () {
         // dans tous les cas
@@ -49,12 +42,9 @@ export default function Todolist() {
 
   // PUT tache checked
   const handleCheck = (e, closeParam) => {
-    console.log(closeParam);
-    // const userToken = localStorage.getItem('User token')
     const taskId = e.target.id
     axios.put(`${process.env.REACT_APP_BACK_API_BASE_URL}/tasks/${taskId}`,
       {
-        // Les données à mettre à jour pour la tâche (par exemple, le titre ou la description)
         "data": {
           isClose: !closeParam,
         }
@@ -65,8 +55,6 @@ export default function Todolist() {
         },
       }
     ).then(function (response) {
-      // en cas de réussite de la requête
-      console.log(response);
       if (response.status === 200) {
         setReload(!reload)
       }
@@ -83,7 +71,6 @@ export default function Todolist() {
   // delete task
 
   const handleDeleteTask = (itemId) => {
-    console.log(itemId);
     axios.delete(`${process.env.REACT_APP_BACK_API_BASE_URL}/tasks/${itemId}`,
       {
         headers: {
@@ -91,8 +78,6 @@ export default function Todolist() {
         },
       }
     ).then(function (response) {
-      // en cas de réussite de la requête
-      console.log(response);
       if (response.status === 200) {
         setReload(!reload)
       }

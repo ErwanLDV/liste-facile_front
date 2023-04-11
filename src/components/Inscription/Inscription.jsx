@@ -31,9 +31,6 @@ export default function Inscription({setIsLogged, setUserId}) {
         email: stateInscription.email,
         password: stateInscription.password,
       }).then(response => {
-        console.log(response);
-        console.log('User profile', response.data.user);
-        console.log('User token', response.data.jwt);
         if (response.status === 200) {
           localStorage.setItem('User token', response.data.jwt);
           setUserId(response.data.user.id)

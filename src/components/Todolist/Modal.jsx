@@ -10,14 +10,11 @@ export default function Modal({ setIsOpen, idtodolist, setReload, reload }) {
   }
 
    // Ajouter une tache 
-
    const handleSetNewTask = (e) => {
     e.preventDefault();
-    console.log('je click');
     const userToken = localStorage.getItem('User token')
     axios.post(`${process.env.REACT_APP_BACK_API_BASE_URL}/tasks`,
       {
-        // Les données à mettre à jour pour la tâche (par exemple, le titre ou la description)
         "data": {
           title: input,
           todolist: idtodolist,
@@ -29,8 +26,6 @@ export default function Modal({ setIsOpen, idtodolist, setReload, reload }) {
         },
       }
     ).then(function (response) {
-      // en cas de réussite de la requête
-      console.log(response);
       if (response.status === 200) {
         setIsOpen(false);
         setReload(!reload)

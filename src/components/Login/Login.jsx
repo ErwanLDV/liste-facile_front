@@ -23,16 +23,12 @@ export default function Login({ isLogged, setIsLogged}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
     axios
       .post(`${process.env.REACT_APP_BACK_API_BASE_URL}/auth/local`, {
         identifier: stateLogin.email,
         password: stateLogin.password,
       })
       .then(response => {
-        console.log(response);
-        console.log('User profile', response.data.user);
-        console.log('User token', response.data.jwt);
         if (response.status === 200) {
           localStorage.setItem('User token', response.data.jwt);
           setStateLogin({

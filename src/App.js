@@ -27,7 +27,6 @@ function App() {
           },
         })
         .then((response) => {
-          console.log(response);
           setIsLogged(true);
           setUserId(response.data.id)
         })

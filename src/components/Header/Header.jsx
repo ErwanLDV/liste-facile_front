@@ -6,7 +6,6 @@ export default function Header({ isLogged, loading, setIsLogged }) {
 const navigate = useNavigate();
 
 const handleLogout = () => {
-  console.log('logout');
   setIsLogged(false);
   localStorage.removeItem("User token");
   navigate('/');

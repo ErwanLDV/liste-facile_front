@@ -10,7 +10,6 @@ export default function Todolists() {
   const [loading, setLoading] = useState(true);
   const [todolists, setTodolists] = useState([]);
   const [reload, setReload] = useState(false);
-  console.log(todolists);
   const userToken = localStorage.getItem('User token')
 
   useEffect(() => {
@@ -22,8 +21,6 @@ export default function Todolists() {
         },
       })
       .then(function (response) {
-        // en cas de réussite de la requête
-        console.log(response);
         setTodolists(response.data.todolists)
       })
       .catch(function (error) {
@@ -38,7 +35,6 @@ export default function Todolists() {
 
 
   const handleClickDelete = (id) => {
-    console.log('je delete');
     axios.delete(`${process.env.REACT_APP_BACK_API_BASE_URL}/todolists/${id}`,
       {
         headers: {
@@ -47,16 +43,12 @@ export default function Todolists() {
         },
       })
       .then(function (response) {
-        // en cas de réussite de la requête
-        console.log(response);
         setReload(!reload);
       })
       .catch(function (error) {
-        // en cas d’échec de la requête
         console.log(error);
       })
       .finally(function () {
-        // dans tous les cas
       });
   }
 
