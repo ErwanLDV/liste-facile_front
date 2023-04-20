@@ -5,6 +5,8 @@ import axios from 'axios';
 
 export default function Modal({ setIsOpen, idtodolist, setReload, reload }) {
   const [input, setInput] = useState('');
+  const [message, setMessage] = useState('');
+
   const handleChange = (e) => {
     setInput(e.target.value)
   }
@@ -13,10 +15,11 @@ export default function Modal({ setIsOpen, idtodolist, setReload, reload }) {
    const handleSetNewTask = (e) => {
     e.preventDefault();
     const userToken = localStorage.getItem('User token')
+    if (input.trim().length >= 1) { 
     axios.post(`${process.env.REACT_APP_BACK_API_BASE_URL}/tasks`,
       {
         "data": {
-          title: input,
+          title: input.trim(),
           todolist: idtodolist,
         }
       },
@@ -29,6 +32,7 @@ export default function Modal({ setIsOpen, idtodolist, setReload, reload }) {
       if (response.status === 200) {
         setIsOpen(false);
         setReload(!reload)
+        setMessage('');
       }
     })
       .catch(function (error) {
@@ -38,6 +42,9 @@ export default function Modal({ setIsOpen, idtodolist, setReload, reload }) {
       .finally(function () {
         // dans tous les cas
       });
+    }else {
+      setMessage('Veuillez entrer une tâche');
+    }
   }
 
   return (
@@ -51,11 +58,11 @@ export default function Modal({ setIsOpen, idtodolist, setReload, reload }) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
-          <input autoFocus type="text" onChange={handleChange}/>
+          {message && <p>{message}</p>}
+          <input id='inputNewTask' autoFocus type="text" value={input} onChange={handleChange}/>
           <button onClick={handleSetNewTask} className="btn-submit">valider</button>
         </form>
       </div>
-
     </div>
   )
 }

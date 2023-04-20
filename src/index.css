@@ -5,9 +5,7 @@
 
 body{
     height: 100vh;
-    background: #0DB4FC;
-    background: radial-gradient(ellipse farthest-corner at center center, #0DB4FC 0%, #000000 77%);
-    
+    background-image: linear-gradient(22.5deg, rgba(221, 221, 221, 0.04) 0%, rgba(221, 221, 221, 0.04) 56%,rgba(7, 7, 7, 0.04) 56%, rgba(7, 7, 7, 0.04) 100%),linear-gradient(112.5deg, rgba(227, 227, 227, 0.04) 0%, rgba(227, 227, 227, 0.04) 14%,rgba(56, 56, 56, 0.04) 14%, rgba(56, 56, 56, 0.04) 100%),linear-gradient(45deg, rgba(39, 39, 39, 0.04) 0%, rgba(39, 39, 39, 0.04) 34%,rgba(196, 196, 196, 0.04) 34%, rgba(196, 196, 196, 0.04) 100%),linear-gradient(0deg, rgba(20, 20, 20, 0.04) 0%, rgba(20, 20, 20, 0.04) 84%,rgba(75, 75, 75, 0.04) 84%, rgba(75, 75, 75, 0.04) 100%),linear-gradient(90deg, rgb(21, 64, 90),#024166);
 }
 
 .custom {

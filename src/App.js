@@ -19,7 +19,7 @@ function App() {
   useEffect(() => {
     const userToken = localStorage.getItem('User token');
 
-    // Vérifier si le token est présent dans le local storage
+    // Vérifie si le token est présent dans le local storage
     if (userToken) {
       axios.get(`${process.env.REACT_APP_BACK_API_BASE_URL}/users/me`, {
           headers: {
@@ -49,7 +49,7 @@ function App() {
       <Header isLogged={isLogged} setIsLogged={setIsLogged} loading={loading} />
       <Routes>
         <Route path='/' element=<Home isLogged={isLogged} /> />
-        <Route path='/login' element=<Login isLogged={isLogged} setIsLogged={setIsLogged} /> />
+        <Route path='/login' element=<Login setIsLogged={setIsLogged} setUserId={setUserId}/> />
         <Route path='/inscription' element=<Inscription setIsLogged={setIsLogged} setUserId={setUserId}/> />
       
         {/* ------------ Protected Routes --------------- */}

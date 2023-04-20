@@ -14,7 +14,16 @@
 .checked {
   text-decoration: line-through;
   color: gray;
-  
+}
+
+.list-container-div-checked {
+  background-color:rgba(108, 108, 108, 0.147);
+  border-radius: 10px;
+  padding: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px;
 }
 
 .list-container {
@@ -32,16 +41,19 @@
   justify-content: space-between;
   align-items: center;
   margin: 15px;
-  
 }
 
 .list-container-div input {
-  transform: scale(1.6);
+  transform: scale(1.7);
+}
+.list-container-div-checked input {
+  transform: scale(1.7);
 }
 .list-container-div span {
   display: inline-block;
   text-align: center;
 }
+
 
 .delete-task {
   background-color: red;
@@ -99,10 +111,11 @@ modal
   min-height: 8em;
 }
 
-.modal-form input {
+#inputNewTask {
   border: 1px solid rgb(183, 183, 183);
   border-radius: 10px;
   text-align: center;
+  width: 75%;
 }
 
 #close-btn {
@@ -134,8 +147,14 @@ right: 7px;
   .list-container-div {
     flex-direction: column;
   }
+  .list-container-div-checked {
+    flex-direction: column;
+  }
 
   .list-container-div span {
+    padding: 15px;
+  }
+  .list-container-div-checked span {
     padding: 15px;
   }
 
@@ -145,5 +164,9 @@ right: 7px;
 
   .modal-form  {
     margin-top: 10%;
+  }
+
+  .delete-task {
+    margin-top: 10px;
   }
 }

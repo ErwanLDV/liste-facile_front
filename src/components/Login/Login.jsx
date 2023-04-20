@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './login.css'
 
-export default function Login({ isLogged, setIsLogged}) {
+export default function Login({ setUserId, setIsLogged}) {
   const navigate = useNavigate();
   
   const [message, setMessage] = useState("");
@@ -29,6 +29,7 @@ export default function Login({ isLogged, setIsLogged}) {
         password: stateLogin.password,
       })
       .then(response => {
+        console.log(response);
         if (response.status === 200) {
           localStorage.setItem('User token', response.data.jwt);
           setStateLogin({
@@ -37,6 +38,7 @@ export default function Login({ isLogged, setIsLogged}) {
           });
           setMessage("");
           setIsLogged(true);
+          setUserId(response.data.user.id);
           setTimeout(() => {
             navigate("/todolists");
           }, 1000);

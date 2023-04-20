@@ -99,7 +99,7 @@ export default function Todolist() {
         <div className="list-container">
           <AnimatePresence>
             {taskList.map((item, index) => (
-              <motion.div className="list-container-div" key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -200 }} transition={{ duration: .4, delay: index * 0.15 }}>
+              <motion.div className={item.attributes.isClose ? 'list-container-div-checked' : 'list-container-div'} key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x: -200 }} transition={{ duration: .4, delay: index * 0.15 }}>
                 <input id={item.id} type="checkbox" onChange={(e) => handleCheck(e, item.attributes.isClose)} checked={item.attributes.isClose} />
                 <span className={item.attributes.isClose ? 'checked' : ''}>{item.attributes.title}</span>
                 <button className="delete-task" onClick={() => handleDeleteTask(item.id)} ><img src={LogoTrash} alt="Logo-poubelle" /></button>

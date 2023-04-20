@@ -21,7 +21,9 @@ export default function Todolists() {
         },
       })
       .then(function (response) {
-        setTodolists(response.data.todolists)
+        if (response.data.todolists) {
+          setTodolists(response.data.todolists)
+        }
       })
       .catch(function (error) {
         // en cas d’échec de la requête
@@ -84,7 +86,7 @@ export default function Todolists() {
         <div>Loading...</div>
       ) : (
         <>
-      <h1 className='title-liste'>{todolists.length > 0 ? 'Vos listes' : 'Vous n\'avez pas de listes'}</h1>
+      <h1 className='title-liste'>{todolists.length > 0 ? 'Vos listes' : 'Vous n\'avez pas encore de listes ? 😞 Créé en une ! 🚀'}</h1>
       <AnimatePresence>
       {todolists && todolists.map((item, index) => (
         <motion.div className="row" key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x:-200}} transition={{ duration: .4, delay: index * 0.15 }}>

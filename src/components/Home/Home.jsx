@@ -6,8 +6,8 @@ import { motion } from "framer-motion"
 
 export default function Home({ isLogged }) {
   return (
-    <motion.div initial={{ y: -1000, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .7 }} className="home-container">
-      <h1 className="title">LISTE FACILE</h1>
+    <motion.div initial={{ y: -1000, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: .8 }} className="home-container">
+      <h1 className="title">☑ LISTE FACILE</h1>
       <p className="subtitle">L'application qui vous facilite la vie !</p>
       <div className="img-container">
         <div className="logo-todolist">

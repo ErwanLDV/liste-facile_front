@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function Inscription({setIsLogged, setUserId}) {
+  const [message, setMessage] = useState('');
   const [stateInscription, setStateInscription] = useState({
     username: "",
     email: "",
@@ -26,6 +27,13 @@ export default function Inscription({setIsLogged, setUserId}) {
     e.preventDefault();
     if (stateInscription.password === stateInscription.repeatPassword) {
 
+      //Vérification email
+      const emailPattern = /\S+@\S+\.\S+/;
+      if (!emailPattern.test(stateInscription.email)) {
+        setMessage("L'adresse email n'est pas valide");
+        return;
+      };
+
       axios.post(`${baseURL}/auth/local/register`, {
         username: stateInscription.username,
         email: stateInscription.email,
@@ -39,7 +47,8 @@ export default function Inscription({setIsLogged, setUserId}) {
             email: "",
             password: "",
             repeatPassword: ""
-          })
+          });
+          setMessage('');
           setIsLogged(true);
           setTimeout(() => {
             navigate("/todolists");
@@ -48,16 +57,20 @@ export default function Inscription({setIsLogged, setUserId}) {
       })
         .catch(error => {
           console.log('An error occurred:', error.response);
+          setMessage('Email ou pseudo déjà existant')
         });
+    }else {
+      setMessage('Vérifiez les champs')
     }
   }
   return (
     <form className='form-inscription' onSubmit={handleSubmit}>
+      {message && <p>{message}</p>}
       <input type="text" name='username' placeholder="Pseudo" value={stateInscription.username} onChange={handleChangeInput} required/>
       <input type="email" name='email' placeholder='Adresse email' value={stateInscription.email} onChange={handleChangeInput} required/>
       <input type="password" name='password' minLength={6} placeholder='Mot de passe' value={stateInscription.password} onChange={handleChangeInput} required/>
       <input type="password" name='repeatPassword' minLength={6} placeholder='Répéter le mot de passe' value={stateInscription.repeatPassword} onChange={handleChangeInput} required/>
-      <button type='submit' className="px-5 py-2.5 relative rounded group font-medium text-white font-medium inline-block">
+      <button type='submit' className="px-5 py-2.5 relative rounded group font-medium text-white inline-block">
           <span className="absolute top-0 left-0 w-full h-full rounded opacity-50 filter blur-sm bg-gradient-to-br from-purple-600 to-blue-500"></span>
           <span className="h-full w-full inset-0 absolute mt-0.5 ml-0.5 bg-gradient-to-br filter group-active:opacity-0 rounded opacity-50 from-purple-600 to-blue-500"></span>
           <span className="absolute inset-0 w-full h-full transition-all duration-200 ease-out rounded shadow-xl bg-gradient-to-br filter group-active:opacity-0 group-hover:blur-sm from-purple-600 to-blue-500"></span>
