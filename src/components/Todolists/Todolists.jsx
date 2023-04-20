@@ -87,7 +87,8 @@ export default function Todolists() {
         <Loader />
       ) : (
         <>
-      <h1 className='title-liste'>{todolists.length > 0 ? 'Vos listes' : 'Vous n\'avez pas encore de listes ? 😞 Créé en une ! 🚀'}</h1>
+      <h1 className='title-liste'>{todolists.length > 0 ? 'Vos listes' : 'Vous n\'avez pas encore de listes ? 😞 Créez en une ! 🚀'}</h1>
+      {todolists.length === 0 && <Link className='Link animate-bounce' to={'/todolist/ajouter'}>C'est par ici ➡</Link>}
       <AnimatePresence>
       {todolists && todolists.map((item, index) => (
         <motion.div className="row" key={item.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, x:-200}} transition={{ duration: .4, delay: index * 0.15 }}>

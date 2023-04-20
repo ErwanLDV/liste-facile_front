@@ -13,6 +13,7 @@
   font-size: 2em;
   color: #fff;
   padding: 15px;
+  margin-top: 1em;
 }
 
 .my-custom-class {
@@ -105,6 +106,17 @@
   background-color: red;
   padding: 7px;
   color: aliceblue;
+}
+
+.Link {
+  background-color: rgb(14, 133, 107);
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  display: block;
+  width: 10em;
+  margin: 5em auto;
+  color: #fff;
 }
 
 

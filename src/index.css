@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
 
 body{
     height: 100vh;
@@ -9,5 +9,5 @@ body{
 }
 
 .custom {
-    @apply scrollbar-thin scrollbar-thumb-[#6061F1] scrollbar-track-[#06577A] overflow-y-scroll  h-screen;
+    @apply scrollbar-thin scrollbar-thumb-[#6061F1] scrollbar-track-[#06577A] overflow-y-auto h-screen;
 }

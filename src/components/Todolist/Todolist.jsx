@@ -96,7 +96,7 @@ export default function Todolist() {
           // dans tous les cas
         });
     } else {
-      toast('La tache n\'est pas terminée ! 🤭 Pour supprimer cochez la ✅')
+      toast('La tache n\'est pas terminée ! 🤭 Pour supprimer cochez-la ✅')
     }
   }
 
