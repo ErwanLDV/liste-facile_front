@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import { motion, AnimatePresence  } from 'framer-motion';
+import Loader from '../Loader/Loader';
 
 export default function Todolists() {
   const [loading, setLoading] = useState(true);
@@ -83,7 +84,7 @@ export default function Todolists() {
   return (
     <>
       {loading ? (
-        <div>Loading...</div>
+        <Loader />
       ) : (
         <>
       <h1 className='title-liste'>{todolists.length > 0 ? 'Vos listes' : 'Vous n\'avez pas encore de listes ? 😞 Créé en une ! 🚀'}</h1>

@@ -29,7 +29,6 @@ export default function Login({ setUserId, setIsLogged}) {
         password: stateLogin.password,
       })
       .then(response => {
-        console.log(response);
         if (response.status === 200) {
           localStorage.setItem('User token', response.data.jwt);
           setStateLogin({

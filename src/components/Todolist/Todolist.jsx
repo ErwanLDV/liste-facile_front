@@ -6,7 +6,8 @@ import './todolist.css'
 import LogoTrash from '../../assets/images/trash-can.png'
 import Modal from './Modal'
 import { AnimatePresence, motion } from 'framer-motion'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Todolist() {
@@ -15,6 +16,7 @@ export default function Todolist() {
   const [TitleList, setTitleList] = useState("");
   const [reload, setReload] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
+
 
   // je rend visible le token pour mes requetes
   const userToken = localStorage.getItem('User token')
@@ -71,28 +73,45 @@ export default function Todolist() {
   // delete task
 
   const handleDeleteTask = (itemId) => {
-    axios.delete(`${process.env.REACT_APP_BACK_API_BASE_URL}/tasks/${itemId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${userToken}`,
-        },
-      }
-    ).then(function (response) {
-      if (response.status === 200) {
-        setReload(!reload)
-      }
-    })
-      .catch(function (error) {
-        // en cas d’échec de la requête
-        console.log(error);
+
+    const selectedItem = taskList.find(item => item.id === itemId)
+
+    if (selectedItem.attributes.isClose) {
+      axios.delete(`${process.env.REACT_APP_BACK_API_BASE_URL}/tasks/${itemId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      ).then(function (response) {
+        if (response.status === 200) {
+          setReload(!reload)
+        }
       })
-      .finally(function () {
-        // dans tous les cas
-      });
+        .catch(function (error) {
+          // en cas d’échec de la requête
+          console.log(error);
+        })
+        .finally(function () {
+          // dans tous les cas
+        });
+    } else {
+      toast('La tache n\'est pas terminée ! 🤭 Pour supprimer cochez la ✅')
+    }
   }
 
   return (
     <div>
+      < ToastContainer position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light" />
       <div className="checkList">
         <div className="title">{TitleList}</div>
         <button className="btn-new-task" onClick={() => setIsOpen(true)}>Ajouter une tache</button>
